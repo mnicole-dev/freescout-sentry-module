@@ -39,11 +39,15 @@ class SentryReporter
 
     public static function dsnFromEnv(): ?string
     {
-        return self::readEnv('SENTRY_DSN');
+        // SENTRY_DSN = nom écrit par l'image Docker (préfixe FREESCOUT_ retiré).
+        // FREESCOUT_SENTRY_DSN = fallback si quelqu'un le pose tel quel (hors image).
+        return self::readEnv('SENTRY_DSN') ?: self::readEnv('FREESCOUT_SENTRY_DSN');
     }
 
     public static function environment(): string
     {
-        return self::readEnv('SENTRY_ENVIRONMENT') ?: 'production';
+        return self::readEnv('SENTRY_ENVIRONMENT')
+            ?: self::readEnv('FREESCOUT_SENTRY_ENVIRONMENT')
+            ?: 'production';
     }
 }
