@@ -1,0 +1,13 @@
+{
+  "name": "mnicole-dev/freescout-sentry-module",
+  "description": "FreeScout module: forward errors (unhandled exceptions + error-level logs) to Sentry.",
+  "license": "AGPL-3.0-only",
+  "require": {
+    "php": ">=8.1",
+    "sentry/sentry": "^4.0"
+  },
+  "require-dev": { "phpunit/phpunit": "^10.5" },
+  "replace": { "laravel/framework": "*" },
+  "autoload": { "psr-4": { "Modules\\Sentry\\": "" } },
+  "autoload-dev": { "psr-4": { "Modules\\Sentry\\Tests\\": "Tests/" } }
+}
